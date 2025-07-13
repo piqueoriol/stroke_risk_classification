@@ -1,0 +1,23 @@
+general_parameters:
+  data_path: "./data/in/stroke_data.csv"
+  test_size: 0.2
+  cv_folds: 10
+  optimization_metric: "recall"
+
+model_hyperparameters:
+  random_forest:
+    n_estimators: [64, 100, 128, 200]
+    max_features: [2, 3, 5, 7]
+    bootstrap: [true, false]
+  logistic_regression:
+    C: [0.01, 0.1, 1, 10, 100]
+    penalty: ["l1", "l2"]
+    solver: ["liblinear"]
+
+output:
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1"
+  output_path: "./data/out/"

@@ -3,7 +3,9 @@
 This repository contains an **end‑to‑end data science workflow** for a binary classification task: predicting stroke risk from publicly available health data. The goal is to demonstrate data science best practices and a systematic approach, **not** to deep‑dive into stroke analysis, but to showcase a reproducible project structure.
 
 This project provides two complementary implementations:
-- Notebook‑based approach under the notebooks/ folder, offering detailed plots and step‑by‑step insights.
+
+- A notebook‑based approach under the notebooks/ folder, offering a full workflow with detailed plots and step‑by‑step insights.
+
 - Modular script‑based pipeline with source code in the src/ folder, orchestrated by main.py, and packaged for production via a Dockerfile and Makefile.
 
 ---

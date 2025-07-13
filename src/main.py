@@ -1,6 +1,8 @@
 import argparse
 import yaml
+import joblib
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.model_selection import GridSearchCV, StratifiedKFold
 from imblearn.pipeline import Pipeline as ImbPipeline
 from imblearn.over_sampling import SMOTE
@@ -10,6 +12,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 from stroke_prediction_model import StrokePredictor
+from utils import plot_model_threshold_curves
 
 
 def load_config(path: str) -> dict:
@@ -118,6 +121,25 @@ def main(config_path: str):
     preds_df = pd.DataFrame({'stroke_probability': probs})
     preds_df.to_csv(output_path+'predictions.csv', index=False)
     print(f"Predictions saved to {output_path}")
+
+    # Save best model
+    model_path = output_path + 'best_model.pkl'
+    joblib.dump(chosen_model, model_path)
+    print(f"Best model saved to {model_path}")
+
+    # Plot & save ROC / PR curves for both models
+    print("Plotting ROC and Precision‑Recall curves...")
+    plot_model_threshold_curves(
+        best_rf=best_models['random_forest'],
+        best_lr=best_models['logistic_regression'],
+        X_test=X_test,
+        y_test=y_test
+    )
+    curves_path = output_path + 'roc_pr_curves.png'
+    plt.savefig(curves_path, dpi=300, bbox_inches='tight')
+    plt.close() 
+    print(f"ROC and PR curves written to {curves_path}")
+
     print("All done.")
 
 

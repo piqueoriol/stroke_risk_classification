@@ -4,7 +4,7 @@ This repository contains an **end‑to‑end data science workflow** for a binar
 
 This project provides two complementary implementations:
 
-- A notebook‑based approach under the notebooks/ folder, offering a full workflow with detailed plots and step‑by‑step insights.
+- Notebook‑based approach under the notebooks/ folder, offering a full workflow with detailed plots and step‑by‑step insights.
 
 - Modular script‑based pipeline with source code in the src/ folder, orchestrated by main.py, and packaged for production via a Dockerfile and Makefile.
 
